@@ -2,6 +2,7 @@
 
 import sys, os
 import unittest
+import random
 
 sys.path.append(os.pardir)
 from algorithms import LinkedList
@@ -310,6 +311,13 @@ class Test_LinkedList(unittest.TestCase):
         linkedlist = LinkedList.from_iterable([0, 1, 2])
 
         self.assertEqual(str(linkedlist), '[0, 1, 2]')
+
+    def test_sort(self) -> None:
+        test_data = [random.randint(0, 99) for _ in range(100)]
+        sorted_data = sorted(test_data)
+        linkedlist = LinkedList.from_iterable(test_data)
+        linkedlist.sort()
+        self.assertListEqual(linkedlist.to_list(), sorted_data)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
