@@ -230,5 +230,26 @@ class LinkedList:
         """
         return str(self.to_list())
 
+    def sort(self) -> None:
+        """ 要素を昇順に並べ替える
+        """
+        if self.__count <= 1:
+            return
+        pivot = self[0]
+        left, middle, right = LinkedList(), LinkedList(), LinkedList()
+        elem = self.__head
+        while elem is not None:
+            if elem.value == pivot:
+                middle.append(elem.value)
+            elif elem.value < pivot:
+                left.append(elem.value)
+            else:
+                right.append(elem.value)
+            elem = elem.child
+        left.sort()
+        right.sort()
+        self.clear()
+        self += left + middle + right
+
 if __name__ == '__main__':
     pass
